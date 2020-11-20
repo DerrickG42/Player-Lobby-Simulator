@@ -41,7 +41,7 @@ public:
 	Lobby();
 	~Lobby();
 	void AddPlayer();
-	void Remove();
+	void RemovePlayer();
 	void Clear();
 
 private:
