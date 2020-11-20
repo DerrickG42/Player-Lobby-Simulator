@@ -6,90 +6,90 @@ using namespace std;
 class Player
 {
 public:
-	Player(const string& name = " ");
-	string GetName() const;
-	Player* GetNext() const;
-	void SetNext(Player* next);
+    Player(const string& name = " ");
+    string GetName() const;
+    Player* GetNext() const;
+    void SetNext(Player* next);
 private:
-	string m_Name;
-	Player* m_pNext;
+    string m_Name;
+    Player* m_pNext;
 };
 
-Player::Player(const string& name):
-	m_Name(name),m_pNext(0){}
+Player::Player(const string& name) :
+    m_Name(name), m_pNext(0) {}
 
-	string Player::GetName() const
+string Player::GetName() const
 {
-	return m_Name;
+    return m_Name;
 }
 
 Player* Player::GetNext() const
 {
-	return m_pNext;
+    return m_pNext;
 }
 
 void Player::SetNext(Player* next)
 {
-	m_pNext = next;
+    m_pNext = next;
 }
 
 class Lobby
 {
-	friend ostream& operator <<(ostream& os, const Lobby& aLobby);
+    friend ostream& operator <<(ostream& os, const Lobby& aLobby);
 
 public:
-	Lobby();
-	~Lobby();
-	void AddPlayer();
-	void RemovePlayer();
-	void Clear();
+    Lobby();
+    ~Lobby();
+    void AddPlayer();
+    void RemovePlayer();
+    void Clear();
 
 private:
-	Player* m_pHead;
+    Player* m_pHead;
 };
 
-Lobby::Lobby(): m_pHead(0){}
+Lobby::Lobby() : m_pHead(0) {}
 
 Lobby::~Lobby()
 {
-	Clear();
+    Clear();
 }
 
 void Lobby::AddPlayer()
 {
-	//create a new player node
-	cout << "Please enter the name of the new player: ";
-	string name;
-	cin >> name;
-	Player* pNewPlayer = new Player(name);
+    //create a new player node
+    cout << "Please enter the name of the new player: ";
+    string name;
+    cin >> name;
+    Player* pNewPlayer = new Player(name);
 
-	//if list is empty, make head of list this new player
-	if (m_pHead == 0)
-	{
-		m_pHead = pNewPlayer;
-	}
-	//otherwise find the end of the list and add the player there 
-	else
-	{
-		Player* pIter = m_pHead;
-		while (pIter->GetNext() != 0)
-		{
-			pIter = pIter->GetNext();
-		}
-		pIter->SetNext(pNewPlayer);
-	}
+    //if list is empty, make head of list this new player
+    if (m_pHead == 0)
+    {
+        m_pHead = pNewPlayer;
+    }
+    //otherwise find the end of the list and add the player there 
+    else
+    {
+        Player* pIter = m_pHead;
+        while (pIter->GetNext() != 0)
+        {
+            pIter = pIter->GetNext();
+        }
+        pIter->SetNext(pNewPlayer);
+    }
 }
 
 void Lobby::RemovePlayer()
 {
-    if(m_pHead++0)
+    if (m_pHead == 0)
     {
-        cout<<”The game lobby is empty. No one to remove!\n”;
+        cout << "The game lobby is empty.No one to remove!\n";
     }
     else
     {
-        Player* pTemp=m_pHead;
-        m_pHead=m_pHead->GetNext();
+        Player* pTemp = m_pHead;
+        m_pHead = m_pHead->GetNext();
         delete pTemp;
     }
 }
